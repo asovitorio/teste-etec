@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETEC Irmã Agostina - Manipulação do DOM</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .box { padding: 10px; border: 1px solid #ccc; margin-top: 10px; }
+        .highlight { background-color: yellow; font-weight: bold; }
+
+        .dark{
+            background-color: #000;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body class="">
+    <button id="tema" onclick="tema()">dark</button>
+    <h1>ETEC Irmã Agostina - Manipulação do DOM</h1>
+    <p>Esta página demonstra o uso de JavaScript para manipular o Document Object Model (DOM).</p>
+
+    <!-- Seleção e Manipulação de Conteúdo -->
+    <div class="box">
+        <h2>Alterar Conteúdo de Texto</h2>
+        <p id="texto">Este é o texto original.</p>
+        <button onclick="alterarTexto()">Alterar Texto</button>
+    </div>
+
+    <!-- Estilização de Elementos -->
+    <div class="box">
+        <h2>Alterar Estilo</h2>
+        <p id="estilo">Este texto terá seu estilo alterado.</p>
+        <button onclick="alterarEstilo()">Mudar Estilo</button>
+    </div>
+
+    <!-- Manipulação de Atributos -->
+    <div class="box">
+        <h2>Alterar Atributo de Imagem</h2>
+        <img id="imagem" src="https://via.placeholder.com/150" alt="Imagem Exemplo" />
+        <button onclick="alterarAtributo()">Trocar Imagem</button>
+    </div>
+
+    <!-- Criação e Remoção de Elementos -->
+    <div class="box">
+        <h2>Adicionar e Remover Elemento</h2>
+        <div id="container"></div>
+        <button onclick="adicionarElemento()">Adicionar Parágrafo</button>
+        <button onclick="removerElemento()">Remover Parágrafo</button>
+    </div>
+
+    <script>
+        
+        // Função para alterar o tema dark e ligth
+        function tema() {
+           let body = document.querySelector("body")
+           let temaButton = document.querySelector("#tema")
+             body.classList.toggle("dark")
+            if(body.className =="dark") {
+                return temaButton.innerHTML="ligth"
+            }else{
+                return temaButton.innerHTML="dark"
+
+            }
+            
+        }
+        // Função para alterar o texto de um elemento
+        function alterarTexto() {
+            document.getElementById("texto").innerText = "O texto foi alterado com sucesso!";
+        }
+
+        // Função para alterar o estilo de um elemento
+        function alterarEstilo() {
+            const elemento = document.getElementById("estilo");
+            elemento.classList.toggle("highlight");
+        }
+
+        // Função para alterar o atributo de uma imagem
+        function alterarAtributo() {
+            const imagem = document.getElementById("imagem");
+            imagem.src = "https://leonardo-energy.org.br/wp-content/uploads/2017/07/LOGO-ETEC.jpg";
+            imagem.alt = "Nova Imagem Exemplo";
+        }
+
+        // Função para adicionar um novo parágrafo
+        function adicionarElemento() {
+            const novoParagrafo = document.createElement("p");
+            novoParagrafo.innerText = "Este é um novo parágrafo adicionado dinamicamente.";
+            novoParagrafo.id = "novoParagrafo";
+            document.getElementById("container").appendChild(novoParagrafo);
+        }
+
+        // Função para remover o parágrafo adicionado
+        function removerElemento() {
+            const container = document.getElementById("container");
+            const elementoRemover = document.getElementById("novoParagrafo");
+            if (elementoRemover) {
+                container.removeChild(elementoRemover);
+            } else {
+                alert("Não há nenhum parágrafo para remover.");
+            }
+        }
+    </script>
+</body>
+</html>
